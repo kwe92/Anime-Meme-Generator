@@ -4,11 +4,19 @@ import 'package:flutter/material.dart';
 final ThemeData appTheme = ThemeData(
   useMaterial3: true,
   colorScheme: darkScheme,
+  textTheme: const TextTheme(
+    titleLarge: TextStyle(
+      fontSize: 36,
+      fontWeight: FontWeight.w500,
+    ), // AppBar title
+  ),
   appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.green0,
   ),
   cardTheme: const CardTheme(
     color: AppColors.green0,
+    shadowColor: Color(0xFF8f2589),
+    elevation: 12,
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
