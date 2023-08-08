@@ -10,6 +10,21 @@ class MemesView extends StatelessWidget {
         appBar: AppBar(
           title: const Text('AniMemes'),
         ),
+        body: const Center(
+          child: Card(
+            child: Padding(
+              padding: EdgeInsets.all(0),
+              child: Column(
+                children: [
+                  Text(''),
+                  SizedBox(
+                    height: 24,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
