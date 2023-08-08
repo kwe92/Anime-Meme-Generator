@@ -1,8 +1,16 @@
+import 'package:anime_meme_generator/app/resources/reuseables.dart';
+import 'package:anime_meme_generator/features/memes/models/ani_memes_model.dart';
 import 'package:flutter/material.dart';
 
-class MemesView extends StatelessWidget {
+class MemesView extends StatefulWidget {
   const MemesView({super.key});
 
+  @override
+  State<MemesView> createState() => _MemesViewState();
+}
+
+class _MemesViewState extends State<MemesView> {
+  AniMemesModel? visibleMeme;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -10,16 +18,27 @@ class MemesView extends StatelessWidget {
         appBar: AppBar(
           title: const Text('AniMemes'),
         ),
-        body: const Center(
+        body: Center(
           child: Card(
+            margin: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Padding(
-              padding: EdgeInsets.all(0),
+              padding: const EdgeInsets.only(top: 12),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(''),
+                  const Text('Meme Title Goes Here!'),
+                  gap6,
                   SizedBox(
-                    height: 24,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Image.network('https://pm1.aminoapps.com/7598/06fd473e24ce1bd4594c6a69f37642ae4b91b04dr1-800-800v2_hq.jpg'),
+                    ),
                   ),
+                  gap12,
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text('Get Next Meme'),
+                  )
                 ],
               ),
             ),
