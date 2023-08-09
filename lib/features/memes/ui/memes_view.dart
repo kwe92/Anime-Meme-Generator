@@ -4,6 +4,12 @@ import 'package:anime_meme_generator/features/memes/models/ani_memes_model.dart'
 import 'package:anime_meme_generator/features/shared/services/get_it.dart';
 import 'package:flutter/material.dart';
 
+// TODO: use circular progress indicator instead of text
+// TODO: maybe a loading screen?
+// TODO: show user some information if there is a failure | snackbar popup on failure?
+// TODO: turn into a stateless widget and use provider / change notifier
+// TODO: Figure out how to not have so many if statements, there has to be a better way
+
 class MemesView extends StatefulWidget {
   const MemesView({super.key});
 
@@ -33,13 +39,20 @@ class _MemesViewState extends State<MemesView> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (visibleMeme != null)
-                    FittedBox(
-                      child: Text(visibleMeme!.title),
+                    Text(
+                      visibleMeme!.title,
+                      textAlign: TextAlign.center,
                     ),
                   if (visibleMeme != null) gap6,
                   if (visibleMeme != null)
-                    SizedBox(
-                      child: Image.network(visibleMeme!.imgUrl),
+                    // use ClipRRect to force rounding of child elements
+                    ClipRRect(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(12),
+                      ),
+                      child: Image.network(
+                        visibleMeme!.imgUrl,
+                      ),
                     ),
                   if (visibleMeme == null)
                     const FittedBox(
@@ -47,7 +60,6 @@ class _MemesViewState extends State<MemesView> {
                     ),
                   gap12,
                   OutlinedButton(
-                    // TODO: make button work
                     onPressed: () async {
                       // - from the list of registered objects pass
                       //   the one you want to access as a parameterized type

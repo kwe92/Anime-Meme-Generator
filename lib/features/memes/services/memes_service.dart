@@ -10,6 +10,8 @@ class _FetchError extends Error {
   String toString() => _message;
 }
 
+// TODO: make a minimum of 5 attemps before throwing
+
 class AniMemesService {
   const AniMemesService();
 
