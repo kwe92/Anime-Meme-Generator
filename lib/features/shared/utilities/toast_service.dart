@@ -5,7 +5,7 @@ class ToastService {
   void showSnackBar(BuildContext context, {required String message}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 1),
+        duration: const Duration(seconds: 3),
         content: Text(message),
       ),
     );
