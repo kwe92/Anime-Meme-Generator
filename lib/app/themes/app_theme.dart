@@ -1,6 +1,8 @@
 import 'package:anime_meme_generator/app/themes/styles/colors.dart';
 import 'package:flutter/material.dart';
 
+// TODO: style snackbar
+
 final ThemeData appTheme = ThemeData(
   useMaterial3: true,
   colorScheme: darkScheme,

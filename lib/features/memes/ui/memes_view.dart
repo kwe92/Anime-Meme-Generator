@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 // TODO: show user some information if there is a failure | snackbar popup on failure?
 // TODO: turn into a stateless widget and use provider / change notifier
 // TODO: Figure out how to not have so many if statements, there has to be a better way
+// TODO: maybe use the global key instead of passing the BuildContext around?
 
 class MemesView extends StatefulWidget {
   const MemesView({super.key});
@@ -46,12 +47,15 @@ class _MemesViewState extends State<MemesView> {
                   if (visibleMeme != null) gap6,
                   if (visibleMeme != null)
                     // use ClipRRect to force rounding of child elements
-                    ClipRRect(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(12),
-                      ),
-                      child: Image.network(
-                        visibleMeme!.imgUrl,
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxHeight: 500),
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                        child: Image.network(
+                          visibleMeme!.imgUrl,
+                        ),
                       ),
                     ),
                   if (visibleMeme == null)
@@ -66,7 +70,7 @@ class _MemesViewState extends State<MemesView> {
                       //   to your GetIt instance
                       // - instead of instantiating the object you call its method
                       //   through your locator
-                      final AniMemesModel aniMeme = await locator<AniMemeModelController>().getNextMeme();
+                      final AniMemesModel aniMeme = await locator<AniMemeModelController>().getNextMeme(context);
 
                       setState(() {
                         visibleMeme = aniMeme;
