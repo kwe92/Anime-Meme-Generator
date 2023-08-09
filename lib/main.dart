@@ -9,7 +9,7 @@ void main() {
   //   - GetIt services are initialized in your main function
   //     prior to your application starting
 
-  setUp();
+  configureDependencies();
 
   runApp(
     const MyApp(),
