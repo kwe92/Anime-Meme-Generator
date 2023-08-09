@@ -1,7 +1,9 @@
+import 'package:anime_meme_generator/features/memes/models/ani_memes_model.dart';
+import 'package:anime_meme_generator/features/memes/services/memes_service.dart';
+import 'package:anime_meme_generator/features/shared/services/get_it.dart';
+
 class AniMemeModelController {
   const AniMemeModelController();
 
-  getNextMeme() {
-    // TODO: Call the meme service and get next meme
-  }
+  Future<AniMemesModel> getNextMeme() async => locator<AniMemesService>().getMeme();
 }
