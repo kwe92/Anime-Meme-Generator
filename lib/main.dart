@@ -1,8 +1,16 @@
 import 'package:anime_meme_generator/app/themes/app_theme.dart';
 import 'package:anime_meme_generator/features/memes/ui/memes_view.dart';
+import 'package:anime_meme_generator/features/shared/services/get_it.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  // initializing services (Initializing Service Locator in App)
+
+  //   - GetIt services get initialized in your main function
+  //     preior to your application starting
+
+  setUp();
+
   runApp(
     const MyApp(),
   );
