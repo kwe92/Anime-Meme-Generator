@@ -11,6 +11,7 @@ class MemesView extends StatefulWidget {
 
 class _MemesViewState extends State<MemesView> {
   AniMemesModel? visibleMeme;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +30,9 @@ class _MemesViewState extends State<MemesView> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text('Meme Title Goes Here!'),
+                  const FittedBox(
+                    child: Text('Meme Title Goes Here!'),
+                  ),
                   gap6,
                   SizedBox(
                     child: Image.network('https://pm1.aminoapps.com/7598/06fd473e24ce1bd4594c6a69f37642ae4b91b04dr1-800-800v2_hq.jpg'),
