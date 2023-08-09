@@ -5,11 +5,14 @@ final ThemeData appTheme = ThemeData(
   useMaterial3: true,
   colorScheme: darkScheme,
   textTheme: const TextTheme(
-    titleLarge: TextStyle(
-      fontSize: 36,
-      fontWeight: FontWeight.w500,
-    ), // AppBar title
-  ),
+      titleLarge: TextStyle(
+        fontSize: 36,
+        fontWeight: FontWeight.w500,
+      ), // AppBar title
+      bodyMedium: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+      )),
   appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.green0,
   ),
