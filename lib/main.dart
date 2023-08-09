@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 void main() {
   // initializing services (Initializing Service Locator in App)
 
-  //   - GetIt services get initialized in your main function
-  //     preior to your application starting
+  //   - GetIt services are initialized in your main function
+  //     prior to your application starting
 
   setUp();
 
