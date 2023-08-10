@@ -1,43 +1,54 @@
 import 'package:anime_meme_generator/app/themes/styles/colors.dart';
+import 'package:anime_meme_generator/app/themes/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 // TODO: style snackbar
 
-// Re
-
+/// Theme for the entire app.
 final ThemeData appTheme = ThemeData(
   useMaterial3: true,
-  colorScheme: darkScheme,
-  textTheme: const TextTheme(
-      titleLarge: TextStyle(
-        fontSize: 36,
-        fontWeight: FontWeight.w500,
-      ), // AppBar title
-      bodyMedium: TextStyle(
-        fontSize: 24,
-        fontWeight: FontWeight.w600,
-      )),
-  appBarTheme: const AppBarTheme(
-    backgroundColor: AppColors.green0,
+  colorScheme: _darkScheme,
+  textTheme: _textTheme,
+  appBarTheme: _appBarTheme,
+  cardTheme: _cardTheme,
+  outlinedButtonTheme: _outlinedButtonThemeData,
+);
+
+const _darkScheme = ColorScheme.dark(
+  onSurface: AppColors.green0,
+  onBackground: AppColors.lightBlue0,
+);
+
+final _textTheme = TextTheme(
+  // affects AppBar title
+  titleLarge: TextStyle(
+    foreground: Paint()..color = AppColors.lightBlue0,
+    fontSize: 36,
+    fontWeight: FontWeight.w500,
   ),
-  cardTheme: const CardTheme(
-    color: AppColors.green0,
-    shadowColor: Color(0xFF8f2589),
-    elevation: 12,
-  ),
-  outlinedButtonTheme: OutlinedButtonThemeData(
-    style: ButtonStyle(
-      foregroundColor: _resolver<Color>(
-        (states) => AppColors.lightBlue0,
-      ),
+  bodyMedium: baseTextStyle,
+);
+
+const _appBarTheme = AppBarTheme(
+  backgroundColor: AppColors.green0,
+);
+
+const _cardTheme = CardTheme(
+  color: AppColors.green0,
+  shadowColor: AppColors.grey1,
+  elevation: 6,
+);
+
+final _outlinedButtonThemeData = OutlinedButtonThemeData(
+  style: ButtonStyle(
+    foregroundColor: _resolver<Color>(
+      (states) => AppColors.lightBlue0,
+    ),
+    overlayColor: _resolver(
+      (states) => AppColors.grey0,
     ),
   ),
 );
 
-const darkScheme = ColorScheme.dark(
-  onSurface: AppColors.lightBlue0,
-  onBackground: AppColors.lightBlue0,
-);
-
-// parameterized type to shorten resolver
-MaterialStateProperty<T?>? _resolver<T>(T Function(Set<MaterialState>) func) => MaterialStateProperty.resolveWith(func);
+/// parameterized utility function to shorten calls to MaterialStateProperty.
+MaterialStateProperty<T?>? _resolver<T>(T Function(Set<MaterialState> states) func) => MaterialStateProperty.resolveWith(func);
