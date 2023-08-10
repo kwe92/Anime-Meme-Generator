@@ -1,26 +1,19 @@
 import 'package:anime_meme_generator/app/resources/reuseables.dart';
-import 'package:anime_meme_generator/features/memes/models/ani_memes_model.dart';
-import 'package:anime_meme_generator/features/shared/services/services.dart';
+import 'package:anime_meme_generator/features/memes/ui/memes_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 // TODO: use circular progress indicator instead of text
 // TODO: maybe a loading screen?
-// TODO: turn into a stateless widget and use provider / change notifier
 // TODO: Figure out how to not have so many if statements, there has to be a better way
 // TODO: maybe use the global key instead of passing the BuildContext around?
 
-class MemesView extends StatefulWidget {
+class MemesView extends StatelessWidget {
   const MemesView({super.key});
 
   @override
-  State<MemesView> createState() => _MemesViewState();
-}
-
-class _MemesViewState extends State<MemesView> {
-  AniMemesModel? visibleMeme;
-
-  @override
   Widget build(BuildContext context) {
+    final visibleMeme = context.watch<MemesViewModel>().aniMeme;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -39,8 +32,9 @@ class _MemesViewState extends State<MemesView> {
                 children: [
                   if (visibleMeme != null)
                     Text(
-                      visibleMeme!.title,
+                      visibleMeme.title,
                       textAlign: TextAlign.center,
+                      overflow: TextOverflow.clip,
                     ),
                   if (visibleMeme != null) gap10,
                   if (visibleMeme != null)
@@ -52,7 +46,7 @@ class _MemesViewState extends State<MemesView> {
                           Radius.circular(12),
                         ),
                         child: Image.network(
-                          visibleMeme!.imgUrl,
+                          visibleMeme.imgUrl,
                         ),
                       ),
                     ),
@@ -62,13 +56,7 @@ class _MemesViewState extends State<MemesView> {
                     ),
                   gap12,
                   OutlinedButton(
-                    onPressed: () async {
-                      final AniMemesModel aniMeme = await aniMemeModelController.getNextMeme(context);
-
-                      setState(() {
-                        visibleMeme = aniMeme;
-                      });
-                    },
+                    onPressed: () async => await context.read<MemesViewModel>().getMeme(context),
                     child: const Text('Get Next Meme'),
                   ),
                 ],
