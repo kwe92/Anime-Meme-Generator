@@ -63,11 +63,6 @@ class _MemesViewState extends State<MemesView> {
                   gap12,
                   OutlinedButton(
                     onPressed: () async {
-                      // - from the list of registered objects pass
-                      //   the one you want to access as a parameterized type
-                      //   to your GetIt instance
-                      // - instead of instantiating the object you call its method
-                      //   through your locator
                       final AniMemesModel aniMeme = await aniMemeModelController.getNextMeme(context);
 
                       setState(() {
@@ -75,7 +70,7 @@ class _MemesViewState extends State<MemesView> {
                       });
                     },
                     child: const Text('Get Next Meme'),
-                  )
+                  ),
                 ],
               ),
             ),
