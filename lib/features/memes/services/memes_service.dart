@@ -2,8 +2,7 @@
 
 import 'dart:convert';
 import 'package:anime_meme_generator/features/memes/models/ani_memes_model.dart';
-import 'package:anime_meme_generator/features/shared/services/get_it.dart';
-import 'package:anime_meme_generator/features/shared/utilities/toast_service.dart';
+import 'package:anime_meme_generator/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -28,7 +27,7 @@ class AniMemesService {
     final http.Response response = await http.get(url);
 
     if (response.statusCode != 200) {
-      locator<ToastService>().showSnackBar(context, message: 'There was an issue fetching the meme. Try again!');
+      toastService.showSnackBar(context, message: 'There was an issue fetching the meme. Try again!');
       throw _FetchError('there was an issue getting your data.');
     }
 

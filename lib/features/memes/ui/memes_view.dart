@@ -1,12 +1,10 @@
 import 'package:anime_meme_generator/app/resources/reuseables.dart';
-import 'package:anime_meme_generator/features/memes/controllers/ani_meme_controller.dart';
 import 'package:anime_meme_generator/features/memes/models/ani_memes_model.dart';
-import 'package:anime_meme_generator/features/shared/services/get_it.dart';
+import 'package:anime_meme_generator/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 
 // TODO: use circular progress indicator instead of text
 // TODO: maybe a loading screen?
-// TODO: show user some information if there is a failure | snackbar popup on failure?
 // TODO: turn into a stateless widget and use provider / change notifier
 // TODO: Figure out how to not have so many if statements, there has to be a better way
 // TODO: maybe use the global key instead of passing the BuildContext around?
@@ -70,7 +68,7 @@ class _MemesViewState extends State<MemesView> {
                       //   to your GetIt instance
                       // - instead of instantiating the object you call its method
                       //   through your locator
-                      final AniMemesModel aniMeme = await locator<AniMemeModelController>().getNextMeme(context);
+                      final AniMemesModel aniMeme = await aniMemeModelController.getNextMeme(context);
 
                       setState(() {
                         visibleMeme = aniMeme;
