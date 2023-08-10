@@ -44,7 +44,7 @@ class _MemesViewState extends State<MemesView> {
                       visibleMeme!.title,
                       textAlign: TextAlign.center,
                     ),
-                  if (visibleMeme != null) gap6,
+                  if (visibleMeme != null) gap10,
                   if (visibleMeme != null)
                     // use ClipRRect to force rounding of child elements
                     ConstrainedBox(
