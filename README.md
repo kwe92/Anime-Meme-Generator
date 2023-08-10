@@ -1,6 +1,16 @@
 # anime_meme_generator | Clean Architecture | Clean Code | Design Patterns
 
-Practice clean architecture, clean code and service locator design pattern
+Simple Anime Meme Generator
+
+Practice:
+
+- Clean architecture
+
+- Clean D.R.Y code
+
+- Service locator design pattern
+
+- theming your entire app with ThemeData
 
 Why Clean Architecture?
 
@@ -17,3 +27,5 @@ Tools/Libraries (Packages)
 - get_it: a service locator (also a runtime dependency injector)
 
 - Provider: a flutter state management (You can use any kind of state management you prefer)
+
+warning: This is a sub-reddit API
