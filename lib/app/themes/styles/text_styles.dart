@@ -5,6 +5,6 @@ import 'package:flutter/material.dart';
 
 const baseTextStyle = TextStyle(
   color: AppColors.lightBlue0,
-  fontSize: 24,
+  fontSize: 14,
   fontWeight: FontWeight.w600,
 );
