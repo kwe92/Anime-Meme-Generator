@@ -2,7 +2,15 @@
 
 Practice clean architecture, clean code and service locator design pattern
 
-By employing clean architecture, you can design applications with very low coupling and independent of technical implementation details. That way, the application becomes easy to maintain and flexible to change. Clean architecture allows us to create architectural boundaries between dependencies which allows components to be intrinsically testable
+Why Clean Architecture?
+
+- Because we like to create ALOT of folders :D
+
+- you can design applications with very low coupling (different folders) independent of technical implementation details.
+
+- the application becomes easy to maintain and flexible to change.
+
+- Clean architecture allows us to create architectural boundaries between dependencies (have a bunch of folders) which allows components to be intrinsically testable
 
 Tools/Libraries (Packages)
 
