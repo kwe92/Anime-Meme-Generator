@@ -3,9 +3,8 @@ import 'package:anime_meme_generator/features/memes/ui/memes_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-// TODO: use circular progress indicator instead of text
+// TODO: use circular progress indicator instead of text?
 // TODO: maybe a loading screen?
-// TODO: Figure out how to not have so many if statements, there has to be a better way
 // TODO: maybe use the global key instead of passing the BuildContext around?
 
 class MemesView extends StatelessWidget {
@@ -14,6 +13,7 @@ class MemesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final visibleMeme = context.watch<MemesViewModel>().aniMeme;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
