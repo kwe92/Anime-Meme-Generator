@@ -10,3 +10,10 @@ const gap10 = Gap(10);
 const gap12 = Gap(12);
 const gap14 = Gap(14);
 const gap16 = Gap(16);
+const gap18 = Gap(18);
+
+const gap20 = Gap(20);
+
+const gap24 = Gap(24);
+
+const gap32 = Gap(32);
