@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 
 /// Theme for the entire app.
 final ThemeData appTheme = ThemeData(
-  useMaterial3: true,
-  colorScheme: _darkScheme,
-  textTheme: _textTheme,
-  appBarTheme: _appBarTheme,
-  cardTheme: _cardTheme,
-  outlinedButtonTheme: _outlinedButtonThemeData,
-);
+    useMaterial3: true,
+    colorScheme: _darkScheme,
+    textTheme: _textTheme,
+    appBarTheme: _appBarTheme,
+    cardTheme: _cardTheme,
+    outlinedButtonTheme: _outlinedButtonThemeData,
+    // TODO: put in a variable
+    snackBarTheme: const SnackBarThemeData(backgroundColor: AppColors.secondary));
 
 const _darkScheme = ColorScheme.dark(
   onBackground: AppColors.lightBlue0,
