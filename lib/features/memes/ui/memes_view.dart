@@ -22,7 +22,8 @@ class MemesView extends StatelessWidget {
           future: aniMemesService.getMeme(context),
           builder: ((context, snapshot) {
             if (snapshot.hasError) {
-              return Center(
+              // TODO: implement an error screen
+              return const Center(
                 child: Text("error"),
               );
             }
@@ -64,15 +65,12 @@ class MemesView extends StatelessWidget {
                         ),
 
                         gap24,
-                        OutlinedButton(
+                        MainButton(
                           onPressed: () async {
                             await aniMemesService.getMeme(context);
                             context.read<MemesViewModel>().refresh();
                           },
-                          child: const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 16.0),
-                            child: Text('Get Next Meme'),
-                          ),
+                          text: 'Get Next Meme',
                         ),
                         gap12
                       ],
@@ -90,3 +88,72 @@ class MemesView extends StatelessWidget {
     );
   }
 }
+
+class MainButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String text;
+  const MainButton({
+    required this.onPressed,
+    required this.text,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.maxFinite,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Text(text),
+        ),
+      ),
+    );
+  }
+}
+
+// TODO: work on neumorphic button
+
+// class MainButton extends StatelessWidget {
+//   final VoidCallback onPressed;
+//   final String text;
+//   const MainButton({
+//     required this.onPressed,
+//     required this.text,
+//     super.key,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: double.maxFinite,
+//       decoration: const BoxDecoration(
+//           color: AppColors.secondary,
+//           borderRadius: BorderRadius.all(
+//             Radius.circular(50),
+//           ),
+//           boxShadow: [
+//             BoxShadow(
+//               offset: Offset(-4, 0),
+//               color: Colors.white,
+//               blurRadius: 4,
+//               spreadRadius: 4,
+//             ),
+//             BoxShadow(
+//               offset: Offset(4, 0),
+//               color: AppColors.secondary,
+//               blurRadius: 4,
+//               spreadRadius: 4,
+//             ),
+//           ]),
+//       child: OutlinedButton(
+//         onPressed: onPressed,
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(vertical: 16.0),
+//           child: Text(text),
+//         ),
+//       ),
+//     );
+//   }
+// }
