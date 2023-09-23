@@ -11,4 +11,7 @@ class AniMemesModel {
         json['title'],
         json['url'],
       );
+
+  @override
+  String toString() => "AniMemesModel(title: $title, imgUrl: $imgUrl)";
 }

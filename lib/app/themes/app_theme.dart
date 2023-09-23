@@ -4,46 +4,50 @@ import 'package:flutter/material.dart';
 
 /// Theme for the entire app.
 final ThemeData appTheme = ThemeData(
-  useMaterial3: true,
-  colorScheme: _darkScheme,
-  textTheme: _textTheme,
-  appBarTheme: _appBarTheme,
-  cardTheme: _cardTheme,
-  outlinedButtonTheme: _outlinedButtonThemeData,
-);
+    useMaterial3: true,
+    colorScheme: _darkScheme,
+    textTheme: _textTheme,
+    appBarTheme: _appBarTheme,
+    cardTheme: _cardTheme,
+    outlinedButtonTheme: _outlinedButtonThemeData,
+    // TODO: put in a variable
+    snackBarTheme: const SnackBarThemeData(backgroundColor: AppColors.secondary));
 
 const _darkScheme = ColorScheme.dark(
-  onSurface: AppColors.green0,
   onBackground: AppColors.lightBlue0,
+  background: AppColors.primary,
 );
 
-final _textTheme = TextTheme(
+const _textTheme = TextTheme(
   // affects AppBar title
   titleLarge: TextStyle(
-    foreground: Paint()..color = AppColors.lightBlue0,
     fontSize: 36,
     fontWeight: FontWeight.w500,
   ),
+  // affects base app text
   bodyMedium: baseTextStyle,
 );
 
 const _appBarTheme = AppBarTheme(
-  backgroundColor: AppColors.green0,
+  backgroundColor: AppColors.secondary,
 );
 
 const _cardTheme = CardTheme(
-  color: AppColors.green0,
-  shadowColor: AppColors.grey1,
+  color: AppColors.secondary,
+  // shadowColor: AppColors.grey1,
   elevation: 6,
 );
 
 final _outlinedButtonThemeData = OutlinedButtonThemeData(
   style: ButtonStyle(
     foregroundColor: _resolver<Color>(
-      (states) => AppColors.lightBlue0,
+      (states) => Colors.white,
     ),
     overlayColor: _resolver(
       (states) => AppColors.grey0,
+    ),
+    textStyle: _resolver(
+      (states) => baseTextStyle,
     ),
   ),
 );
