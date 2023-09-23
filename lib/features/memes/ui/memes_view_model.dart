@@ -5,12 +5,13 @@ import 'package:anime_meme_generator/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 
 class MemesViewModel extends ChangeNotifier {
-  AniMemesModel? _aniMeme;
+  AniMemesModel _aniMeme = aniMemesService.meme;
 
-  AniMemesModel? get aniMeme => _aniMeme;
+  AniMemesModel get aniMeme => _aniMeme;
 
-  Future<void> getMeme(BuildContext context) async {
-    _aniMeme = await aniMemeModelController.getNextMeme(context);
+  void refresh() async {
+    debugPrint("\nfrom refresh: ${aniMemesService.meme}");
+    _aniMeme = aniMemesService.meme;
     notifyListeners();
   }
 }
