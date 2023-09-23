@@ -1,5 +1,6 @@
 import 'package:anime_meme_generator/app/resources/reuseables.dart';
 import 'package:anime_meme_generator/features/memes/ui/memes_view_model.dart';
+import 'package:anime_meme_generator/features/shared/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,57 +13,78 @@ class MemesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final visibleMeme = context.watch<MemesViewModel>().aniMeme;
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text('AniMemes'),
         ),
-        body: Center(
-          child: Card(
-            margin: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 12.0,
-                horizontal: 24.0,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (visibleMeme != null)
-                    Text(
-                      visibleMeme.title,
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.clip,
+        body: FutureBuilder(
+          future: aniMemesService.getMeme(context),
+          builder: ((context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text("error"),
+              );
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasData) {
+              final visibleMeme = context.watch<MemesViewModel>().aniMeme;
+
+              return Center(
+                child: Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                      horizontal: 24.0,
                     ),
-                  if (visibleMeme != null) gap10,
-                  if (visibleMeme != null)
-                    // use ClipRRect to force rounding of child elements
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxHeight: 500),
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(12),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          visibleMeme.title,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.clip,
                         ),
-                        child: Image.network(
-                          visibleMeme.imgUrl,
+                        gap10,
+                        // use ClipRRect to force rounding of child elements
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(maxHeight: 500),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(12),
+                            ),
+                            child: Image.network(
+                              visibleMeme.imgUrl,
+                            ),
+                          ),
                         ),
-                      ),
+
+                        gap24,
+                        OutlinedButton(
+                          onPressed: () async {
+                            await aniMemesService.getMeme(context);
+                            context.read<MemesViewModel>().refresh();
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            child: Text('Get Next Meme'),
+                          ),
+                        ),
+                        gap12
+                      ],
                     ),
-                  if (visibleMeme == null)
-                    const FittedBox(
-                      child: Text('There is not a meme loaded yet'),
-                    ),
-                  gap12,
-                  OutlinedButton(
-                    onPressed: () async => await context.read<MemesViewModel>().getMeme(context),
-                    child: const Text('Get Next Meme'),
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }),
         ),
       ),
     );
