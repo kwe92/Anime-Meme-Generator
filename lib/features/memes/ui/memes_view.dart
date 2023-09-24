@@ -1,11 +1,11 @@
 import 'package:anime_meme_generator/app/resources/reuseables.dart';
 import 'package:anime_meme_generator/features/memes/ui/memes_view_model.dart';
 import 'package:anime_meme_generator/features/shared/services/services.dart';
+import 'package:anime_meme_generator/features/splash/ui/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 // TODO: use circular progress indicator instead of text?
-// TODO: maybe a loading screen?
 // TODO: maybe use the global key instead of passing the BuildContext around?
 
 class MemesView extends StatelessWidget {
@@ -14,29 +14,29 @@ class MemesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('AniMemes'),
-        ),
-        body: FutureBuilder(
-          future: aniMemesService.getMeme(context),
-          builder: ((context, snapshot) {
-            if (snapshot.hasError) {
-              // TODO: implement an error screen
-              return const Center(
-                child: Text("error"),
-              );
-            }
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasData) {
-              final visibleMeme = context.watch<MemesViewModel>().aniMeme;
+      child: FutureBuilder(
+        future: aniMemesService.getMeme(context),
+        builder: ((context, snapshot) {
+          if (snapshot.hasError) {
+            // TODO: implement an error screen
+            return const Center(
+              child: Text("error"),
+            );
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SplashView();
+          } else if (snapshot.hasData) {
+            final visibleMeme = context.watch<MemesViewModel>().aniMeme;
 
-              return Center(
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('AniMemes'),
+              ),
+              body: Center(
                 child: Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 24.0),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 12.0,
@@ -53,7 +53,9 @@ class MemesView extends StatelessWidget {
                         gap10,
                         // use ClipRRect to force rounding of child elements
                         ConstrainedBox(
-                          constraints: const BoxConstraints(maxHeight: 500),
+                          constraints: const BoxConstraints(
+                            maxHeight: 500,
+                          ),
                           child: ClipRRect(
                             borderRadius: const BorderRadius.all(
                               Radius.circular(12),
@@ -72,18 +74,18 @@ class MemesView extends StatelessWidget {
                           },
                           text: 'Get Next Meme',
                         ),
-                        gap12
+                        gap12,
                       ],
                     ),
                   ),
                 ),
-              );
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
+              ),
             );
-          }),
-        ),
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }),
       ),
     );
   }
