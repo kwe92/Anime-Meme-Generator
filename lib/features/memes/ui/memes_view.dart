@@ -1,4 +1,5 @@
 import 'package:anime_meme_generator/app/resources/reuseables.dart';
+import 'package:anime_meme_generator/features/error/ui/error_view.dart';
 import 'package:anime_meme_generator/features/memes/ui/memes_view_model.dart';
 import 'package:anime_meme_generator/features/shared/services/services.dart';
 import 'package:anime_meme_generator/features/splash/ui/splash_view.dart';
@@ -18,10 +19,7 @@ class MemesView extends StatelessWidget {
         future: aniMemesService.getMeme(context),
         builder: ((context, snapshot) {
           if (snapshot.hasError) {
-            // TODO: implement an error screen
-            return const Center(
-              child: Text("error"),
-            );
+            return const ErrorView();
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const SplashView();
