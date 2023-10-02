@@ -6,9 +6,13 @@ class AppColors {
 
   static const lightBlue0 = Color(0xFFcde4f6);
 
-  static const secondary = Color(0xff3450a1);
+  // static const secondary = Color(0xff3450a1);
 
-  static const primary = Color(0xff041955);
+  // static const primary = Color(0xff041955);
+
+  static const primary = Color(0x3EACACAC);
+
+  static const secondary = Color(0xFFacacac);
 
   static const grey0 = Color(0x3EACACAC);
 
