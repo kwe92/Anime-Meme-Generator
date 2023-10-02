@@ -75,7 +75,7 @@ class ErrorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => CustomButton(
-      onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+      onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (context) => const MemesView(),
           )),
       text: "Try Again",
