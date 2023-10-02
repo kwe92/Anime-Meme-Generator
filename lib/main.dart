@@ -1,5 +1,4 @@
 import 'package:anime_meme_generator/app/themes/app_theme.dart';
-import 'package:anime_meme_generator/features/splash/ui/splash_view.dart';
 import 'package:anime_meme_generator/features/memes/ui/memes_view.dart';
 import 'package:anime_meme_generator/features/memes/ui/memes_view_model.dart';
 import 'package:anime_meme_generator/features/shared/services/get_it.dart';
@@ -17,8 +16,6 @@ void main() {
   runApp(
     ChangeNotifierProvider(
       create: (context) => MemesViewModel(),
-      // builder: (context, child) => const MaterialApp(home: SplashView()),
-
       builder: (context, child) => const MyApp(),
     ),
   );
