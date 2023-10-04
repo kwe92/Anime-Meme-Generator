@@ -17,4 +17,6 @@ class AppColors {
   static const grey0 = Color(0x3EACACAC);
 
   static const grey1 = Color(0xFFacacac);
+
+  static const purple0 = Color(0xff0c0231);
 }
