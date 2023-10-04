@@ -1,9 +1,8 @@
 import 'dart:math';
 
+import 'package:anime_meme_generator/app/themes/styles/colors.dart';
 import 'package:anime_meme_generator/features/shared/utilities/images.dart';
 import 'package:flutter/material.dart';
-
-// TODO: Rotate between a few pictures when loading the app
 
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
@@ -23,7 +22,7 @@ class SplashView extends StatelessWidget {
         height: double.maxFinite,
         decoration: BoxDecoration(
           image: DecorationImage(
-            fit: BoxFit.fill,
+            fit: imgIndex == 0 ? BoxFit.cover : BoxFit.fill,
             image: imageList[imgIndex],
           ),
         ),
@@ -32,7 +31,7 @@ class SplashView extends StatelessWidget {
             height: 100,
             width: 100,
             child: CircularProgressIndicator(
-              color: Color(0xff0c0231),
+              color: AppColors.purple0,
             ),
           ),
         ),
